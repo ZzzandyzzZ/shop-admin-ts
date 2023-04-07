@@ -21,7 +21,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    indent: ['error', 2],
     'comma-dangle': ['error', 'only-multiline'],
   },
 }
