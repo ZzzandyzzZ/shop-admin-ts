@@ -28,6 +28,12 @@
       ],
       "@layout/*": [
         "layout/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@common*": [
+        "components/common*"
       ]
     }
   },
