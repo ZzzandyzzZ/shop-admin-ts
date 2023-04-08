@@ -14,13 +14,21 @@ export const useAuthProvider = (): AuthContext => {
       },
     }
     try {
-      const { data } = await axios.post(
+      const {
+        data: { access_token: token },
+      } = await axios.post<AuthLogin>(
         endPoints.auth.login,
         { email, password },
         options
       )
-      Cookie.set('token', data.access_token, { expires: 5 })
+      Cookie.set('token', token, { expires: 5 })
+      axios.defaults.headers.Authorization = `Bearer ${token}`
       setLoginStatus('correct')
+      const {
+        data: { user },
+      } = await axios.get<AuthProfileApi>(endPoints.auth.profile)
+      console.log({ user })
+      setUser(user)
     } catch (error) {
       setLoginStatus('error')
     }
