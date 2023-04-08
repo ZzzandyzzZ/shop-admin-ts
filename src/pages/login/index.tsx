@@ -1,9 +1,10 @@
+import { Modal } from '@components/common/Modal'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
 import { useAuthProvider } from '@hooks/useAuthProvider'
 import { useRef } from 'react'
 
 export default function Login(): JSX.Element {
-  const auth = useAuthProvider()
+  const { loginStatus, resetLoginStatus, signIn } = useAuthProvider()
   const emailRef = useRef<HTMLInputElement>(null)
   const pwdRef = useRef<HTMLInputElement>(null)
   const handleSubmit = async (event: React.FormEvent): Promise<void> => {
@@ -11,14 +12,19 @@ export default function Login(): JSX.Element {
     const email = emailRef.current?.value
     const password = pwdRef.current?.value
     if (email === undefined || password === undefined) return
-    try {
-      await auth.signIn({ email, password })
-    } catch (error) {
-      console.log(error)
-    }
+    await signIn({ email, password })
   }
   return (
     <>
+      <Modal
+        open={loginStatus === 'error'}
+        setOpen={resetLoginStatus}
+        title={'Login Error'}
+      >
+        <div className="mt-2">
+          <p className="text-sm text-gray-500">Email or password incorrect</p>
+        </div>
+      </Modal>
       <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           <div>
