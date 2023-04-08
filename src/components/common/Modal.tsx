@@ -1,8 +1,13 @@
-import { Fragment, useRef } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
-export const Modal = ({ open, setOpen, title, children }): JSX.Element => {
+export const Modal = ({
+  open,
+  setOpen,
+  title,
+  children,
+}: ModalProps): JSX.Element => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
