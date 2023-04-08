@@ -32,8 +32,11 @@
       "@components/*": [
         "components/*"
       ],
-      "@common*": [
+      "@common/*": [
         "components/common*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
       ]
     }
   },
