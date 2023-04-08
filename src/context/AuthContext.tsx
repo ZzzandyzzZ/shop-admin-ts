@@ -1,11 +1,11 @@
-import { useContext } from 'react'
-import { useProviderAuth } from '@hooks/useAuth'
+import { createContext } from 'react'
+import { useAuthProvider } from '@hooks/useAuthProvider'
 
-export const AuthContext = useContext({})
+export const AuthContext = createContext<AuthContext | null>(null)
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   return (
-    <AuthContext.Provider value={useProviderAuth}>
+    <AuthContext.Provider value={useAuthProvider()}>
       {children}
     </AuthContext.Provider>
   )
