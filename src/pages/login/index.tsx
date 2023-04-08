@@ -1,14 +1,21 @@
 import { LockClosedIcon } from '@heroicons/react/20/solid'
+import { useAuthProvider } from '@hooks/useAuthProvider'
 import { useRef } from 'react'
 
 export default function Login(): JSX.Element {
+  const auth = useAuthProvider()
   const emailRef = useRef<HTMLInputElement>(null)
   const pwdRef = useRef<HTMLInputElement>(null)
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault()
     const email = emailRef.current?.value
-    const pwd = pwdRef.current?.value
-    console.log({ email, pwd })
+    const password = pwdRef.current?.value
+    if (email === undefined || password === undefined) return
+    try {
+      await auth.signIn({ email, password })
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <>
