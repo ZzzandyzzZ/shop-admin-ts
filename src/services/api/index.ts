@@ -11,7 +11,8 @@ const FILES_URL = `${API_BASE_URL}/files`
 
 const endPoints = {
   products: {
-    getProducts: PRODUCTS_URL,
+    getProducts: (limit: number, offset: number) =>
+      `${PRODUCTS_URL}?limit=${limit}&offset=${offset}`,
     postProducts: PRODUCTS_URL,
     getProduct: (id: string) => `${PRODUCTS_URL}/${id}`,
     putProducts: (id: string) => `${PRODUCTS_URL}/${id}`,
