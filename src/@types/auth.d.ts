@@ -8,7 +8,7 @@ interface Credentials {
   email: string
   password: string
 }
-interface AuthContext {
+interface IAuthContext {
   user: User | null
   loginStatus: LoginStatus
   resetLoginStatus: () => void
