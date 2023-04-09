@@ -1,10 +1,10 @@
 import { Modal } from '@components/common/Modal'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
-import { useAuthProvider } from '@hooks/useAuthProvider'
-import { useRef } from 'react'
+import { AuthContext } from 'context/AuthContext'
+import { useContext, useRef } from 'react'
 
 export default function Login(): JSX.Element {
-  const { loginStatus, resetLoginStatus, signIn } = useAuthProvider()
+  const { loginStatus, resetLoginStatus, signIn } = useContext(AuthContext)
   const emailRef = useRef<HTMLInputElement>(null)
   const pwdRef = useRef<HTMLInputElement>(null)
   const handleSubmit = async (event: React.FormEvent): Promise<void> => {
